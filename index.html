@@ -7,15 +7,21 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
+          ['Exam', 'Your Score', 'Class Average'],
+          ['quiz1',  30,   50],
+          ['quiz2',  40,   55],
+          ['quiz3',  53,   53],
+          ['quiz4',  58,  59],
+          ['quiz5',  67,   58],
+          ['quiz6',  70,   60],
+          ['quiz7',  75,   65],
+          ['quiz8',  79,   58],
+          ['quiz9',  80,   55],
+          ['quiz10', 75,   60]
         ]);
 
         var options = {
-          title: 'Company Performance',
+          title: 'Physics Performance of a Student',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
@@ -25,8 +31,101 @@
         chart.draw(data, options);
       }
     </script>
+
+
+    <script type="text/javascript">
+
+      // Load Charts and the corechart and barchart packages.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart and bar chart when Charts is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Subject');
+        data.addColumn('number', 'Share');
+        data.addRows([
+          ['Physics', 60],
+          ['Chemistry', 80],
+          ['Math', 95],
+          ['English', 50],
+          ['Computer Science', 80]
+        ]);
+
+        var barchart_options = {title:'Performance of a student in various subjects',
+                       legend: 'none'};
+        var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
+        barchart.draw(data, barchart_options);
+      }
+</script>
+
+      <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawAxisTickColors);
+
+function drawAxisTickColors() {
+      var data = google.visualization.arrayToDataTable([
+        ['Subject', 'A student', 'Class Average'],
+        ['Physics', 60, 75],
+        ['Chemistry', 80, 70],
+        ['Math', 95, 78],
+        ['English', 50, 45],
+        ['Computer Science', 80, 90]
+      ]);
+
+      var options = {
+        title: 'Performance',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Scores',
+          minValue: 0,
+          textStyle: {
+            bold: true,
+            fontSize: 12,
+            color: '#4d4d4d'
+          },
+          titleTextStyle: {
+            bold: true,
+            fontSize: 18,
+            color: '#4d4d4d'
+          }
+        },
+        vAxis: {
+          title: 'Subject',
+          textStyle: {
+            fontSize: 14,
+            bold: true,
+            color: '#848484'
+          },
+          titleTextStyle: {
+            fontSize: 14,
+            bold: true,
+            color: '#848484'
+          }
+        }
+      };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+      </script>
+
+
   </head>
   <body>
+    <h2> Student Performance in a subject  </h2> <hr>
     <div id="curve_chart" style="width: 900px; height: 500px"></div>
+
+
+    <h2> How a student is performing in various subjects </h2> <hr>
+
+    <div id="barchart_div" style="width: 900px; height: 500px"></div>
+
+    <h2> How a student is performing in various subjects with compare to class </h2> <hr>
+
+    <div id="chart_div" style="width: 900px; height: 500px"></div>
+
+
   </body>
 </html>
